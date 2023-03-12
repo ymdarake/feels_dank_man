@@ -32,6 +32,21 @@ class SeventvEmote {
   int flags;
   SeventvEmoteData data;
 
+  String? get firstWebpUrl {
+    String webpName = '';
+    for (final file in data.host.files) {
+      if (file.name.endsWith('.webp')) {
+        webpName = file.name;
+        break;
+      }
+    }
+    if (webpName.isEmpty) {
+      return null;
+    }
+
+    return 'https:${data.host.url}/$webpName';
+  }
+
   factory SeventvEmote.fromJson(Map<String, dynamic> json) {
     return SeventvEmote(
       id: json['id'],

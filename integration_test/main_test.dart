@@ -11,6 +11,6 @@ void main() {
     await tester.pumpAndSettle();
     await Future.delayed(const Duration(seconds: 5));
 
-    expect(find.text('Flutter Demo Home Page'), findsOneWidget);
+    expect(find.text('FeelsDankMan'), findsOneWidget);
   });
 }

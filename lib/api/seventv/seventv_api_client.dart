@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:feels_dank_man/api/seventv/seventv_emote.dart';
 import 'package:feels_dank_man/core/http_client.dart';
-import 'package:feels_dank_man/model/emote.dart';
 
 abstract class ISeventvApiClient {
   Future<List<SeventvEmote>> getChannelEmotes(String channelId);
