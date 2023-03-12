@@ -38,6 +38,7 @@ dependencies:
   logger: ^1.2.2
   get_it: ^7.2.0
   http: ^0.13.5
+  webview_flutter: ^4.0.6
 
 dev_dependencies:
   integration_test:

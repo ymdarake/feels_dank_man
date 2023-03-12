@@ -13,7 +13,8 @@ class SeventvApiClientImpl implements ISeventvApiClient {
   IHttpClient httpClient;
 
   String domain = '7tv.io';
-  String basePath = 'v3/users/twitch/';
+  String userEmoteSetBasePath = 'v3/users/twitch/';
+  String globalEmoteSetPath = 'v3/emote-sets/global';
 
   SeventvApiClientImpl({
     required this.httpClient,
@@ -21,9 +22,8 @@ class SeventvApiClientImpl implements ISeventvApiClient {
 
   @override
   Future<List<SeventvEmote>> getChannelEmotes(String channelId) async {
-    final res = await httpClient.get(domain, basePath + channelId);
-
     // TODO: error handling
+    final res = await httpClient.get(domain, userEmoteSetBasePath + channelId);
     final body = jsonDecode(res.body);
     final rawEmoteSet = body['emote_set'];
     final emoteSet = SeventvEmoteSet.fromJson(rawEmoteSet);
@@ -32,8 +32,13 @@ class SeventvApiClientImpl implements ISeventvApiClient {
   }
 
   @override
-  Future<List<SeventvEmote>> getGlobalEmotes() {
-    // TODO: implement getGlobalEmotes
-    throw UnimplementedError();
+  Future<List<SeventvEmote>> getGlobalEmotes() async {
+    // TODO: error handling
+    final res = await httpClient.get(domain, globalEmoteSetPath);
+    final body = jsonDecode(res.body);
+    final rawEmoteSet = body;
+    final emoteSet = SeventvEmoteSet.fromJson(rawEmoteSet);
+
+    return emoteSet.emotes;
   }
 }
