@@ -5,10 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
   if (kDebugMode) {
     // debugPaintSizeEnabled = true;
   }
   // TODO: setup crashlytics and etc
   di.setup();
+
   runApp(const MyApp());
 }
