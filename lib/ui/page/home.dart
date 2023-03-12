@@ -1,3 +1,4 @@
+import 'package:feels_dank_man/api/seventv/seventv_api_client.dart';
 import 'package:feels_dank_man/di/container.dart';
 import 'package:feels_dank_man/utility/logging/logger.dart';
 import 'package:flutter/material.dart';
@@ -31,8 +32,11 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
+        onPressed: () async {
           getIt<ILogger>().info("testetsets");
+          final seventvEmotes =
+              await getIt<ISeventvApiClient>().getChannelEmotes("557065975");
+          seventvEmotes.forEach(print);
         },
         tooltip: 'Increment',
         child: const Icon(Icons.add),

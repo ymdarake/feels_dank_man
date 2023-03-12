@@ -1,0 +1,4 @@
+enum EmoteType {
+  sub,
+  global,
+}
