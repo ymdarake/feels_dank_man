@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 class InappWebviewStreamPlayer extends StatefulWidget {
@@ -11,18 +12,6 @@ class InappWebviewStreamPlayer extends StatefulWidget {
 
 class _InappWebviewStreamPlayerState extends State<InappWebviewStreamPlayer> {
   InAppWebViewController? webViewController;
-  // InAppWebViewSettings settings = InAppWebViewSettings(
-  //   useShouldOverrideUrlLoading: true,
-  //   mediaPlaybackRequiresUserGesture: false,
-  //   allowsInlineMediaPlayback: true,
-  //   iframeAllow: "camera; microphone",
-  //   iframeAllowFullscreen: true,
-  // );
-
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +23,17 @@ class _InappWebviewStreamPlayerState extends State<InappWebviewStreamPlayer> {
       ),
       onWebViewCreated: (controller) {
         webViewController = controller;
+      },
+      // FIXME: sometimes overflows when entering fullscreen mode
+      onEnterFullscreen: (controller) {
+        SystemChrome.setPreferredOrientations([
+          DeviceOrientation.landscapeLeft,
+        ]);
+      },
+      onExitFullscreen: (controller) {
+        SystemChrome.setPreferredOrientations([
+          DeviceOrientation.portraitUp,
+        ]);
       },
     );
   }
