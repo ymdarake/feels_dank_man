@@ -14,27 +14,31 @@ class ChatMessageInputBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 100,
-      child: TextField(
-        decoration: InputDecoration(
-          label: const Text('type something'),
-          suffixIcon: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              IconButton(
-                icon: const Icon(Icons.emoji_emotions_outlined),
-                onPressed: onEmoteIconPressed,
-              ),
-              IconButton(
-                icon: const Icon(Icons.send_outlined),
-                onPressed: onSendIconPressed,
-              ),
-            ],
+    return Column(
+      children: [
+        Align(
+          alignment: Alignment.centerRight,
+          child: IconButton(
+            iconSize: 24,
+            padding: const EdgeInsets.only(right: 12),
+            constraints: const BoxConstraints(),
+            icon: const Icon(Icons.emoji_emotions_outlined),
+            onPressed: onEmoteIconPressed,
+            splashColor: Colors.yellow,
           ),
         ),
-        controller: controller,
-      ),
+        TextField(
+          showCursor: true,
+          controller: controller,
+          decoration: InputDecoration(
+            hintText: 'type something',
+            suffixIcon: IconButton(
+              icon: const Icon(Icons.send_outlined),
+              onPressed: onSendIconPressed,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

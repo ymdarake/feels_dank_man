@@ -40,7 +40,8 @@ class _MyHomePageState extends State<MyHomePage> {
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
           child: SizedBox(
-            height: MediaQuery.of(context).size.height - kToolbarHeight - 32,
+            height:
+                MediaQuery.of(context).size.height - kToolbarHeight - 32 * 2,
             child: Column(
               children: [
                 // stream web view
@@ -55,6 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   onEmoteIconPressed: _toggleEmotePanel,
                   onSendIconPressed: _handleSendMessage,
                 ),
+                const SizedBox(height: 32),
               ],
             ),
           ),
@@ -93,6 +95,10 @@ class _MyHomePageState extends State<MyHomePage> {
   _handleSendMessage() {
     getIt<ILogger>().info('sending message: "${inputController.text}"');
     inputController.clear();
+    FocusScope.of(context).requestFocus(FocusNode());
+    setState(() {
+      isEmotePanelOpen = false;
+    });
   }
 
   _toggleEmotePanel() {
