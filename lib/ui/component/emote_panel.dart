@@ -12,33 +12,39 @@ class EmotePanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          'Channel Emotes',
-          style: Theme.of(context).textTheme.titleMedium,
-        ),
-        Expanded(
-          child: GridView.count(
+    return Container(
+      color: Colors.lightBlue[100],
+      child: ListView(
+        children: [
+          Text(
+            'Channel Emotes',
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+          GridView.count(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
             crossAxisCount: 10,
             mainAxisSpacing: 2.0,
             crossAxisSpacing: 2.0,
             children: channelEmotes,
           ),
-        ),
-        Text(
-          'Gloabl Emotes',
-          style: Theme.of(context).textTheme.titleMedium,
-        ),
-        Expanded(
-          child: GridView.count(
+          const SizedBox(height: 8),
+          Text(
+            'Global Emotes',
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+          GridView.count(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
             crossAxisCount: 10,
             mainAxisSpacing: 2.0,
             crossAxisSpacing: 2.0,
             children: globalEmotes,
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

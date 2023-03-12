@@ -60,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                 ),
-              const SizedBox(height: 32),
+              const SizedBox(height: 8),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ChatMessageInputBox(
